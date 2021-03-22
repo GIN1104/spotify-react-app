@@ -3,13 +3,12 @@ import  './Login.css'
 
 function Login() {
     return (
-        <div>
-            <h1>Login</h1>
-            <img src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg" alt="" />
-                  {/* Spotify Logo */}
-                  {/* Login with spotify button */} 
+        <div className="login">
+            <img src="https://radio.wosu.org/sites/wosu2/files/201509/spotify-logo-horizontal-black.jpg" alt="" />
+         <a href="...">LOGIN WITH SPOTIFY</a>    
         </div>
     )
 }
 
 export default Login
+ 
