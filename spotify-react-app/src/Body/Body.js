@@ -1,10 +1,10 @@
 import React from 'react'
-import './Body'
+import './Body.css'
 
 function Body() {
     return (
-        <div>
-            Body
+        <div className="body">
+           <h1>Body</h1> 
         </div>
     )
 }
