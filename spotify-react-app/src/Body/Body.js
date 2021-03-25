@@ -5,6 +5,7 @@ import { useDataLayerValue } from '../DataLayer';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import SongRow from '../SongRow/SongRow'
 
 function Body({ spotify }) {
     const [{ discover_weekly}] = useDataLayerValue();
@@ -27,7 +28,10 @@ function Body({ spotify }) {
                   <PlayCircleFilledIcon className="body_shuffle"/> 
                   <FavoriteIcon fontSize="large" />
                   <MoreHorizIcon />  
-                </div>    
+                </div>  
+                  {discover_weekly?.tracks.items.map((item, i) => 
+                      <SongRow key={i} track={item.track} />
+                  )}  
                </div>
         </div>
     )

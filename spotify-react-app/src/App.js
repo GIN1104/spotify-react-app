@@ -41,7 +41,7 @@ useEffect(() => {
        })
     });
     
-    spotify.getPlaylist('3dB3cSEh6k6pyY097OcSLW').then( respons => {
+    spotify.getPlaylist('3zoY9q9acqiUpZbKf8kguC').then( respons => {
       dispatch({
         type: "SET_DISCOVER_WEEKLY",
         discover_weekly: respons,
