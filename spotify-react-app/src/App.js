@@ -39,7 +39,15 @@ useEffect(() => {
          type: 'SET_PLAYLISTS',
          playlists: playlists
        })
+    });
+    
+    spotify.getPlaylist('3dB3cSEh6k6pyY097OcSLW').then( respons => {
+      dispatch({
+        type: "SET_DISCOVER_WEEKLY",
+        discover_weekly: respons,
+      })
     })
+
   }
 }, [dispatch]);
 
