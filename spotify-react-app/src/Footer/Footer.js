@@ -1,20 +1,48 @@
 import React from 'react';
-import './Footer.css'
+import './Footer.css';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import ShuffleIcon from '@material-ui/icons/Shuffle';
+import RepeatIcon from '@material-ui/icons/Repeat';
+import { Grid, Slider } from '@material-ui/core';
+import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
+import VolumeDownIcon from '@material-ui/icons/VolumeDown';
 
 function Footer() {
     return (
         <div className="footer">
           <div className="footer__left">
-              <p>Album and song details</p>
+              <img className="footer__albumLogo" src="https://img.discogs.com/QutFN2sEPwsDTcWebSGUSxj_D94=/fit-in/600x532/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-129221-1176313081.jpeg.jpg" alt=""/>
+              <div className="footer__songInfo">
+                  <h4>Yeah!</h4>
+                  <p>Scooter</p>
+              </div>
           </div>
           <div className="footer__center">
-              <p>Player controls</p>
+
+              <ShuffleIcon className="footer__green"/>
+              <SkipPreviousIcon className="footer__icon"/>
+              <PlayCircleOutlineIcon fontSize="large" className="footer__icon"/>
+              <SkipNextIcon className="footer__icon"/>
+              <RepeatIcon className="footer__green"/>
+
           </div>
           <div className="footer__right">
-              <p>Volume controls  </p>
+              <Grid container spacing={2}>
+                  <Grid item>
+                      <PlaylistPlayIcon />
+                  </Grid>
+                  <Grid item>
+                      <VolumeDownIcon />
+                  </Grid>
+                  <Grid item xs>
+                      <Slider />
+                  </Grid>
+              </Grid>
           </div>
         </div>
     )
 }
 
-export default Footer
+export default Footer;
