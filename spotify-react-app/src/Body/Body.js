@@ -8,8 +8,42 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import SongRow from '../SongRow/SongRow'
 
 function Body({ spotify }) {
-    const [{ discover_weekly}] = useDataLayerValue();
+    const [{ discover_weekly}, dispatch] = useDataLayerValue();
     console.log(discover_weekly)
+
+    const playPlaylist = () => {
+        spotify.play({
+            context_uri: 'spotify:playlist:3zoY9q9acqiUpZbKf8kguC'
+        }).then(() => {
+            spotify.getMyCurrentPlayingTrack().then((r) => {
+                dispatch({
+                    type: "SET_ITEM",
+                    item: r.item
+                });
+                dispatch({
+                    type: "SET_PLAYING",
+                    playing: true
+                });
+            });
+        });
+    };
+
+    const playSong = (id) => {
+        spotify.play({
+            uris: [`spotify:track:${id}`]
+        }).then(() =>{
+            spotify.getMyCurrentPlayingTrack().then((r) => {
+                dispatch({
+                    type: "SET_ITEM",
+                    item: r.item
+                });
+                dispatch({
+                    type: "SET_PLAYING",
+                    playing: true
+                })
+            })
+        })
+    }
     return (
         <div className="body">
            <Header spotify={spotify} />
@@ -25,12 +59,12 @@ function Body({ spotify }) {
                </div>
                <div className="body__songs">
                <div className="body__icon">
-                  <PlayCircleFilledIcon className="body_shuffle"/> 
+                  <PlayCircleFilledIcon className="body_shuffle" onClick={playPlaylist}/> 
                   <FavoriteIcon fontSize="large" />
                   <MoreHorizIcon />  
                 </div>  
                   {discover_weekly?.tracks.items.map((item, i) => 
-                      <SongRow key={i} track={item.track} />
+                      <SongRow key={i} playSong={playSong} track={item.track} />
                   )}  
                </div>
         </div>

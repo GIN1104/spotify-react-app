@@ -26,7 +26,7 @@ useEffect(() => {
         item:r.item
     });
 });
-    },[spotify]);
+    },[spotify, dispatch]);
 
 
 
@@ -98,14 +98,14 @@ useEffect(() => {
           <div className="footer__center">
 
               <ShuffleIcon className="footer__green"/>
-              <SkipPreviousIcon className="footer__icon"/>
+              <SkipPreviousIcon onClick={skipNext} className="footer__icon"/>
 
 { playing ? 
     (<PauseCircleOutlineIcon onClick={handlePlayPause} fontSize="large" className="footer_icon" />)  : (<PlayCircleOutlineIcon onClick={handlePlayPause} fontSize="large" className="footer__icon"/>)
 }
               
 
-              <SkipNextIcon className="footer__icon"/>
+              <SkipNextIcon onClick={SkipPrevious} className="footer__icon"/>
               <RepeatIcon className="footer__green"/>
 
           </div>
