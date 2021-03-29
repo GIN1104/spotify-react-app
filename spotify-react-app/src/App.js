@@ -19,13 +19,31 @@ useEffect(() => {
   const _token = hash.access_token;
 
   if(_token){
+    spotify.setAccessToken(_token);
     dispatch({
       type: 'SET_TOKEN',
       token: _token,
     })
     // setToken(_token);
 
-    spotify.setAccessToken(_token);
+    spotify.getPlaylist("3zoY9q9acqiUpZbKf8kguC").then((res) => 
+      dispatch({
+        type: "SET_DISCOVER_WEEKLY",
+        discover_weekly: res
+      })
+      );
+
+    spotify.getMyTopArtists().then((res) => 
+       dispatch({
+         type: "SET_TOP_ARTISTS",
+         top_artists: res
+       })
+    );
+
+    dispatch({
+      type: "SET_SPOTIFY",
+      spotify: spotify
+    })
 
     spotify.getMe().then( user => {
       dispatch({
@@ -41,27 +59,25 @@ useEffect(() => {
        })
     });
     
-    spotify.getPlaylist('3zoY9q9acqiUpZbKf8kguC').then( respons => {
-      dispatch({
-        type: "SET_DISCOVER_WEEKLY",
-        discover_weekly: respons,
-      })
-    })
+
 
   }
-}, [dispatch]);
+}, [token, dispatch]);
 
 console.log("From reducer : ", user)
 console.log("Token from reducer : ", token)
   return (
     <div className="app">
-      {
+
+      {!token && <Login />}
+      {token && <Player spotify={spotify} />}
+      {/* {
         token ? ( 
           <Player spotify = { spotify } />
         ) : (
           <Login/>
         )
-      }
+      } */}
       
     </div>
   );
