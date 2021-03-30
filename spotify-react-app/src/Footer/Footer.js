@@ -13,17 +13,18 @@ import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 
 function Footer({ spotify }) {
     const [ { item, playing }, dispatch] = useDataLayerValue();
+
 useEffect(() => {
-    spotify.getMyCurrentPlaybackState().then((r) => {
-        console.log("Info form Footer R : ", r);
+    spotify.getMyCurrentPlaybackState().then((res) => {
+        console.log("Info form Footer R : ", res);
 
     dispatch({
         type: "SET_PLAYING",
-        playing: r.is_playing,
+        playing: res.is_playing,
     });
     dispatch({
         type: "SET_ITEM",
-        item:r.item
+        item:res.item
     });
 });
     },[spotify, dispatch]);
@@ -31,6 +32,15 @@ useEffect(() => {
 
 
     const handlePlayPause = () => {
+        fetch('https://api.spotify.com/v1/me/player/play')
+  .then((response) => {
+      alert("Sorry Premium required")
+      console.log("Fetch res : ", response)
+    //return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  });
         if(playing){
             spotify.pause();
             dispatch({
@@ -48,10 +58,10 @@ useEffect(() => {
 
     const skipNext = () => {
         spotify.skipToNext();
-        spotify.getMyCurrentPlayingTrack().then((r) => {
+        spotify.getMyCurrentPlayingTrack().then((res) => {
             dispatch({
                 type: "SET_ITEM",
-                item: r.item
+                item: res.item
             });
             dispatch({
                 type: "SET_PLAYING",
@@ -62,10 +72,10 @@ useEffect(() => {
 
     const SkipPrevious = () => {
         spotify.skipToPrevious();
-        spotify.getMyCurrentPlayingTrack().then((r) => {
+        spotify.getMyCurrentPlayingTrack().then((res) => {
             dispatch({
                 type: "SET_ITEM",
-                item: r.item
+                item: res.item
             });
             dispatch({
                 type: "SET_PLAYING",

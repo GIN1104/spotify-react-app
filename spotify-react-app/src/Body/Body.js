@@ -13,12 +13,14 @@ function Body({ spotify }) {
 
     const playPlaylist = () => {
         spotify.play({
-            context_uri: 'spotify:playlist:3zoY9q9acqiUpZbKf8kguC'
-        }).then(() => {
-            spotify.getMyCurrentPlayingTrack().then((r) => {
+           // context_uri: 'spotify:playlist:3zoY9q9acqiUpZbKf8kguC'
+            context_uri: 'spotify:playlist:3dB3cSEh6k6pyY097OcSLW'
+            // 3dB3cSEh6k6pyY097OcSLW
+        }).then(() => {   
+            spotify.getMyCurrentPlayingTrack().then((res) => {
                 dispatch({
                     type: "SET_ITEM",
-                    item: r.item
+                    item: res.item
                 });
                 dispatch({
                     type: "SET_PLAYING",
@@ -31,11 +33,13 @@ function Body({ spotify }) {
     const playSong = (id) => {
         spotify.play({
             uris: [`spotify:track:${id}`]
-        }).then(() =>{
-            spotify.getMyCurrentPlayingTrack().then((r) => {
+        }).then((r) =>{
+            console.log("Warning res//////", r)
+            spotify.getMyCurrentPlayingTrack().then((res) => {
+        
                 dispatch({
                     type: "SET_ITEM",
-                    item: r.item
+                    item: res.item
                 });
                 dispatch({
                     type: "SET_PLAYING",
