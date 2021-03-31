@@ -24,10 +24,7 @@ useEffect(() => {
       type: 'SET_TOKEN',
       token: _token,
     })
-    // setToken(_token);
-//3dB3cSEh6k6pyY097OcSLW
-   // spotify.getPlaylist("3zoY9q9acqiUpZbKf8kguC").then((res) => 
-    spotify.getPlaylist("3dB3cSEh6k6pyY097OcSLW").then((res) => 
+    spotify.getPlaylist("5Oaxjjd52ViyudcRm7f25u").then((res) => 
       dispatch({
         type: "SET_DISCOVER_WEEKLY",
         discover_weekly: res

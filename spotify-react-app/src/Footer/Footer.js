@@ -32,15 +32,7 @@ useEffect(() => {
 
 
     const handlePlayPause = () => {
-        fetch('https://api.spotify.com/v1/me/player/play')
-  .then((response) => {
-      alert("Sorry Premium required")
-      console.log("Fetch res : ", response)
-    //return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-  });
+        alert("Sorry Premium required")
         if(playing){
             spotify.pause();
             dispatch({
